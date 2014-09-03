@@ -3,5 +3,4 @@ description = "Allows users to create public packing lists."
 files[] = packinglist.module
 files[] = packinglist.admin.inc
 files[] = packinglist.pages.inc
-package = "Custom"
 core = 7.x
