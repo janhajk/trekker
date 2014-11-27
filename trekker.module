@@ -57,10 +57,8 @@ function trekker_form_alter(&$form, $form_state, $form_id) {
 */
 function trekker_after_build($form, &$form_state) {
   // Obtain node object from nid in url
-  drupal_set_message('<pre>'.print_r(arg(1),1).'</pre>');
-    drupal_set_message('<pre>'.print_r(arg(2),1).'</pre>');
-    drupal_set_message('<pre>'.print_r(arg(3),1).'</pre>');
-  //$node_reference_field_name = node_load(arg(1));
+  drupal_set_message('<pre>'.print_r($form,1).'</pre>');
+  $node_reference_field_name = node_load(arg(3));
   //populate autocomplete node reference field with node title. Name of CCK field is field_[cck_field_name].
   //$form['field_cck_field_name'][0]['nid']['nid']['#value'] = $node_reference_field_name->title; 
 
