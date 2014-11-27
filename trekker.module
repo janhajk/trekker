@@ -60,7 +60,7 @@ function trekker_after_build($form, &$form_state) {
   drupal_set_message('<pre>'.print_r($form['field_item', 1).'</pre>');
   $node_reference_field_name = node_load(arg(3));
   //populate autocomplete node reference field with node title. Name of CCK field is field_[cck_field_name].
-  $form['field_item'][und][0]['target_id']['#value'] = $node_reference_field_name->title;
+  //$form['field_item'][und][0]['target_id']['#value'] = $node_reference_field_name->title;
 
 return $form;
 }
