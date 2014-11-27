@@ -1,6 +1,4 @@
-name = "Packing list generator"
-description = "Allows users to create public packing lists."
-files[] = packinglist.module
-files[] = packinglist.admin.inc
-files[] = packinglist.pages.inc
+name = "Trekker Module"
+description = "Extensions for Trekker-Website"
+files[] = trekker.module
 core = 7.x
