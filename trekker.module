@@ -14,9 +14,10 @@ function trekker_block_info() {
  */
 function custom_block_block_view($delta='') {
     $block = array();
-
+    drupal_set_message('loading blocks...', 'status');
     switch($delta) {
         case 'addToMyGear' :
+        drupal_set_message('loading block addToMyGear', 'status');
         $block['content'] = array(
             'nid' => array(
                 '#type' => 'hidden',
