@@ -53,12 +53,12 @@ function trekker_form_alter(&$form, $form_state, $form_id) {
 
 
 /**
-* Populate node reference field
-*/
+ * Populate node reference field
+ */
 function trekker_after_build($form, &$form_state) {
-  drupal_set_message('<pre>'.print_r($form['field_item'], 1).'</pre>');
-  $node = node_load(arg(3));
-  $form['field_item']['und'][0]['target_id']['#value'] = $node->title.' ('.$node->nid.')';
-
-return $form;
+    if (arg(3)!==NULL) {
+        $node = node_load(arg(3));
+        $form['field_item']['und'][0]['target_id']['#value'] = $node->title.' ('.$node->nid.')';
+    }
+    return $form;
 }
