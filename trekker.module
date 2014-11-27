@@ -14,32 +14,34 @@ function trekker_block_info() {
  */
 function trekker_block_view($delta='') {
     $block = array();
-    drupal_set_message('loading blocks...', 'status');
     switch($delta) {
         case 'addToMyGear' :
-        drupal_set_message('loading block addToMyGear', 'status');
-        $block['content'] = array(
-            'nid' => array(
-                '#type' => 'hidden',
-                '#value' => 2
-            ),
-            'button' => array(
-                '#type' => 'image_button',
-                '#src' => file_create_url(drupal_get_path('module', 'trekker').'/process_add.png'),
-                '#value' => t('Delete'),
-                '#weight' => 15,
-                '#submit' => array('trekker_mygearAdd_submit')
-            ),
-        );
+        $block['content'] = drupal_get_form('trekker_addToMyGear_form');
         break;
     }
 
     return $block;
 }
 
+function trekker_addToMyGear_form($form_state) {
+    $form['nid'] = array(
+        '#type' => 'hidden',
+        '#value' => 2
+    );
+    $form['button'] = array(
+        '#type' => 'submit',
+        //'#src' => file_create_url(drupal_get_path('module', 'trekker').'/process_add.png'),
+        '#value' => t('Add to my gear'),
+    );
+    return $form;
+}
+
+function trekker_addToMyGear_form_submit($form, &$form_state) {
+    drupal_set_message(t('The form has been submitted.'));
+}
 
 function trekker_mygearAdd_submit($form, &$form_state) {
     $nid = $form_state['values']['nid'];
-    drupal_set_message($nid, 'status');
+    drupal_set_message('added to my gear!', 'status');
     $form_state['redirect'] = '/node/add/my-gear';
 }
