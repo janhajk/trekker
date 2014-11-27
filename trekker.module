@@ -44,13 +44,11 @@ function trekker_addToMyGear_form_submit($form, &$form_state) {
 
 
 function trekker_form_alter(&$form, $form_state, $form_id) {
-  drupal_set_message($form_id);
-  print($form_id);
   // Check for a particular content type's node form. Form name is [content_type_name]_node_form
-  //if ($form_id == 'content_type_name_node_form') {
+  if ($form_id == 'my_gear_node_form') {
     // Add an after_build function to process when everything's complete.
-    //$form['#after_build'][] = 'mymodulename_after_build';
-  //}
+    $form['#after_build'][] = 'trekker_after_build';
+  }
 }
 
 
@@ -59,9 +57,12 @@ function trekker_form_alter(&$form, $form_state, $form_id) {
 */
 function trekker_after_build($form, &$form_state) {
   // Obtain node object from nid in url
-  $node_reference_field_name = node_load(arg(1));
+  drupal_set_message('<pre>'.print_r(arg(1),1).'</pre>');
+    drupal_set_message('<pre>'.print_r(arg(2),1).'</pre>');
+    drupal_set_message('<pre>'.print_r(arg(3),1).'</pre>');
+  //$node_reference_field_name = node_load(arg(1));
   //populate autocomplete node reference field with node title. Name of CCK field is field_[cck_field_name].
-  $form['field_cck_field_name'][0]['nid']['nid']['#value'] = $node_reference_field_name->title; 
+  //$form['field_cck_field_name'][0]['nid']['nid']['#value'] = $node_reference_field_name->title; 
 
 return $form;
 }
