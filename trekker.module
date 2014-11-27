@@ -12,7 +12,7 @@ function trekker_block_info() {
 /**
  * Implements hook_block_view().
  */
-function trekker_block_block_view($delta='') {
+function trekker_block_view($delta='') {
     $block = array();
     drupal_set_message('loading blocks...', 'status');
     switch($delta) {
