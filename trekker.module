@@ -132,7 +132,7 @@ function trekker_addToList_form($form_state) {
 
 function trekker_addToList_form_submit($form, &$form_state) {
     $node = new EntityDrupalWrapper('node', $form_state['values']['list']);
-    drupal_set_message('<pre>'.print_r($node,1).'</pre>';
+    drupal_set_message('<pre>'.print_r($node,1).'</pre>');
     //$node->field_reference[0]->set(463); // Note that this is a multi value field.
     //$node->field_text->set('Some Value'); // Note that this is a single value field.
     $node->save();
