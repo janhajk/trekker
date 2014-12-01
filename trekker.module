@@ -130,7 +130,7 @@ function trekker_addToList_form($form_state) {
         '#type' => 'submit',
         '#value' => t('Add'),
     );
-    $form['#attached'] => array(
+    $form['#attached'] = array(
                 'js' => array(drupal_get_path('module', 'trekker' . '/trekker.js')),
                 'css' => array(drupal_get_path('module', 'trekker' . '/trekker.css')),
             );
