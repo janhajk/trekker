@@ -149,7 +149,7 @@ function trekker_addToList_form_submit($form, &$form_state) {
     $fc_item->setHostEntity('node', $my_node);
     $fc_wrapper = entity_metadata_wrapper('field_collection_item', $fc_item);
     $fc_wrapper->field_gear->set($ref_nid);
-    $fc_wrapper->field_quantity->set($qty);
+    $fc_wrapper->field_quantity->set((int) $qty);
     $fc_wrapper->save(TRUE);
     node_save($my_node);
 }
