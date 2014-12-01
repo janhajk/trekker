@@ -114,11 +114,11 @@ function trekker_addToList_form($form_state) {
     );
     $form['qty'] = array(
         '#type' => 'textfield',
-        '#value' => '1'
+        '#default_value' => '1'
     );
     $form['comment'] = array(
         '#type' => 'textfield',
-        '#value' => ''
+        '#default_value' => ''
     );
     $form['list_nid'] = array(
         '#type' => 'tableselect',
