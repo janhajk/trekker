@@ -6,6 +6,7 @@
  */
 function trekker_block_info() {
   $blocks['addToMyGear']['info'] = t('Add an item to your gear');
+  $blocks['addToList']['info'] = t('Add an item to user packing list');
   return $blocks;
 }
 
@@ -19,11 +20,17 @@ function trekker_block_view($delta='') {
         // TODO: If already in my gear, then display "I own this..."
         $block['content'] = drupal_get_form('trekker_addToMyGear_form');
         break;
+        case 'addToList' :
+        $block['content'] = drupal_get_form('trekker_addToList_form');
+        break;
     }
 
     return $block;
 }
 
+/*
+ * Button "Add to my gear"
+ */
 function trekker_addToMyGear_form($form_state) {
     $form['nid'] = array(
         '#type' => 'hidden',
@@ -59,12 +66,52 @@ function trekker_form_alter(&$form, $form_state, $form_id) {
 
 
 /**
- * Populate node reference field
+ * Populate node reference field in new my_gear
  */
 function trekker_after_build($form, &$form_state) {
     if (arg(3)!==NULL) {
         $node = node_load(arg(3));
         $form['field_item']['und'][0]['target_id']['#value'] = $node->title.' ('.$node->nid.')';
     }
+    return $form;
+}
+
+
+
+function trekker_addToList_form($form_state) {
+    global $user;
+    $options = array();
+    $query = db_select('node', 'n');
+    $nids = $query
+        ->fields('n', array('nid'))
+        ->condition('u.uid', $user->uid, '=')
+        ->orderBy('created', 'DESC')
+        ->range(0,5)
+        ->execute()
+        ->fetchCol();
+    $nodes = node_load_multiple($nids);
+    foreach($nodes as $node) {
+        $options[$node->nid] = $node->title;
+
+    }
+    $form['qty'] = array(
+        '#type' => 'textfield',
+        '#value' => '1'
+    );
+    $form['comment'] = array(
+        '#type' => 'textfield',
+        '#value' => ''
+    );
+    $form['list'] = array(
+        '#type' => 'tableselect',
+        //'#header' => $header,
+        '#options' => $options,
+        '#empty' => t('No lists available.'),
+        '#multiple' => false,
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Add'),
+    );
     return $form;
 }
