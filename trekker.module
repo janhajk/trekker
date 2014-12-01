@@ -22,10 +22,15 @@ function trekker_block_view($delta='') {
         break;
         case 'addToList' :
         $block['subject'] = t('Add to your Packing List');
-        $block['content'] = drupal_get_form('trekker_addToList_form');
+        $block['content'] => array(
+            '#markup' => drupal_get_form('trekker_addToList_form'),
+            '#attached' => array(
+                'js' => array(drupal_get_path('module', 'trekker' . '/trekker.js')),
+                'css' => array(drupal_get_path('module', 'trekker' . '/trekker.css')),
+            ),
+        );
         break;
     }
-
     return $block;
 }
 
