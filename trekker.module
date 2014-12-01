@@ -84,7 +84,7 @@ function trekker_addToList_form($form_state) {
     $query = db_select('node', 'n');
     $nids = $query
         ->fields('n', array('nid'))
-        ->condition('u.uid', $user->uid, '=')
+        ->condition('n.uid', $user->uid, '=')
         ->orderBy('created', 'DESC')
         ->range(0,5)
         ->execute()
