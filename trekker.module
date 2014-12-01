@@ -108,7 +108,6 @@ function trekker_addToList_form($form_state) {
     );
     $form['list'] = array(
         '#type' => 'tableselect',
-        '#header' => $header,
         '#options' => $options,
         '#empty' => t('No lists available.'),
         '#multiple' => false,
