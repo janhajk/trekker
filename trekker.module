@@ -95,7 +95,16 @@ function trekker_addToList_form($form_state) {
         ->fetchCol();
     $nodes = node_load_multiple($nids);
     foreach($nodes as $node) {
-        $options[$node->nid] = $node->title;
+        $options[$node->nid] = array(
+            'title' => array(
+                'data' => array(
+                    '#type' => 'link',
+                    '#title' => $node->title,
+                    '#href' => 'node/' . $node->nid,
+                ),
+            ),
+        );
+
 
     }
     $form['qty'] = array(
