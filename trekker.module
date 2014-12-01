@@ -86,7 +86,7 @@ function trekker_addToList_form($form_state) {
         'title' => array('data' => t('Title'), 'field' => 'n.title'),
     );
     $nids = $query
-        ->fields('n', array('nid'))
+        ->fields('n', array('nid', 'title'))
         ->condition('n.uid', $user->uid, '=')
         ->condition('n.type', 'packing_list', '=')
         ->orderBy('created', 'DESC')
