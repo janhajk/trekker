@@ -103,7 +103,6 @@ function trekker_addToList_form($form_state) {
     foreach($nodes as $node) {
         $options[$node->nid] = array(
             'title' => array(
-    drupal_set_message($list_nid);
                 'data' => array(
                     '#type' => 'link',
                     '#title' => $node->title,
