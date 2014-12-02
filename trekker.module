@@ -144,7 +144,8 @@ function trekker_addToList_form($form_state) {
 
 function trekker_addToList_form_submit($form, &$form_state) {
     $list_nid = $form_state['values']['list_nid'];
-    if ($list_nid = NULL){
+    drupal_set_message($list_nid);
+    if ($list_nid <> null){
         drupal_set_message(t('You haven\'t selected a packing list. Please select one ore create a new one'), 'warning');
         return;
     }
